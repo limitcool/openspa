@@ -1,0 +1,47 @@
+# OpenSPA Server Configuration File
+server:
+  # Network binding configuration
+  ip: "0.0.0.0"      # Listen address (0.0.0.0 for all interfaces)
+  port: 22233        # UDP port for OpenSPA service
+  requestHandlers: 4 # Number of concurrent request handlers
+
+  # HTTP API settings
+  http:
+    enable: false         # Enable/disable HTTP API service
+    ip: "127.0.0.1"      # HTTP API binding address
+    port: 22234          # HTTP API port
+
+  # Anti-DoS Knocking (ADK) settings
+  adk:
+    secret: "S5USSIA"    # ADK secret key (generate with 'openspa adk secret')
+    xdp:
+      mode: ""           # XDP acceleration mode (native/skb/none)
+      interfaces: []     # Network interfaces for XDP program
+
+# Firewall settings
+firewall:
+  backend: "iptables"    # Firewall backend type (iptables/command/none)
+  iptables:
+    chain: "OPENSPA-ALLOW"  # IPTables chain name for OpenSPA rules
+  # Command backend configuration (if needed)
+
+# Authorization settings
+authorization:
+  backend: "simple"      # Authorization type (simple/command)
+  simple:
+    duration: "1h"       # Default access duration
+  # Command authorization settings (if needed)
+
+# Cryptographic settings
+crypto:
+  # Supported cipher suites in priority order
+  cipherSuitePriority:
+    - "CipherSuite_NoSecurity"
+
+  # RSA key configuration
+  rsa:
+    client:
+      publicKeyLookupDir: "./client/authorized"  # Client public keys directory
+    server:
+      publicKeyPath: "./public.pem"   # Server public key path
+      privateKeyPath: "./private.pem"  # Server private key path
