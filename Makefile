@@ -23,7 +23,7 @@ build-darwin_amd64:
 
 .PHONY: build-windows_amd64
 build-windows_amd64:
-	GOOS=windows GOARCH=amd64 go build -o $(BUILD_DIR)/openspa_windows_amd64 ./cli/openspa
+	GOOS=windows GOARCH=amd64 go build -o $(BUILD_DIR)/openspa_windows_amd64.exe ./cli/openspa
 
 .PHONY: test
 test:
