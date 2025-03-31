@@ -1,0 +1,55 @@
+# OpenSPA Server Configuration
+server:
+  # Server listening IP, 0.0.0.0 means listening on all network interfaces
+  ip: "0.0.0.0"
+  # UDP service listening port
+  port: 22233
+  # Number of request handlers (concurrent processing capacity)
+  requestHandlers: 4
+
+  # HTTP API Configuration
+  http:
+    # Enable HTTP API
+    enable: false
+    # HTTP service listening IP
+    ip: "127.0.0.1"
+    # HTTP service port
+    port: 22234
+
+  # Anti-DoS Knocking Configuration
+  adk:
+    # ADK secret (generate using 'openspa adk secret' command)
+    secret: "your_adk_secret_here"
+    # XDP acceleration configuration
+    xdp:
+      # XDP mode: native/skb/none
+      mode: "none"
+      # Network interfaces to apply XDP program
+      interfaces:
+
+# Firewall Configuration
+firewall:
+  # Firewall backend: iptables/command/none
+  backend: "iptables"
+  # IPTables configuration
+  iptables:
+    # Custom chain name
+    chain: "OPENSPA-ALLOW"
+  # External command configuration (when using command backend)
+
+# Authorization Configuration
+authorization:
+  # Authorization strategy: simple/command
+  strategy: "simple"
+  # External command configuration (when using command strategy)
+
+# Crypto Configuration
+crypto:
+  # Cipher suite priority list
+  cipherSuitePriority:
+  # RSA key configuration
+  rsa:
+    # Server key pair
+    server:
+      privateKey:
+      publicKey: 
